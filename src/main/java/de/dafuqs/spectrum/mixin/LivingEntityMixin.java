@@ -101,6 +101,9 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	protected abstract float getSoundVolume();
 	
+	@Shadow
+	protected boolean dead;
+	
 	// FabricDefaultAttributeRegistry seems to only allow adding full containers and only single entity types?
 	@Inject(method = "createLivingAttributes()Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;", require = 1, allow = 1, at = @At("RETURN"))
 	private static void spectrum$addAttributes(final CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
@@ -587,10 +590,13 @@ public abstract class LivingEntityMixin {
 			float h = target.getHealth();
 			target.setHealth(h - amount);
 			target.getDamageTracker().onDamage(source, amount);
-			if (target.isDead() && !target.isInPose(EntityPose.DYING)) {
-				var deathSound = getDeathSound();
-				if (deathSound != null)
-					target.playSound(deathSound, getSoundVolume(), target.getSoundPitch());
+			if (target.isDead()) {
+				if (!dead) {
+					var deathSound = getDeathSound();
+					if (deathSound != null)
+						target.playSound(deathSound, getSoundVolume(), target.getSoundPitch());
+				}
+				target.onDeath(source);
 			}
 			cir.setReturnValue(true);
 			return;
@@ -605,9 +611,9 @@ public abstract class LivingEntityMixin {
 				
 				boolean damaged = false;
 				for (Pair<DamageSource, Float> entry : composition.get()) {
-					int invincibilityFrameStore = target.timeUntilRegen;
+					int invincibilityFrameStore = target.hurtTime;
 					damaged |= damage(entry.getLeft(), entry.getRight());
-					target.timeUntilRegen = invincibilityFrameStore;
+					target.hurtTime = invincibilityFrameStore;
 				}
 				
 				SpectrumDamageTypes.recursiveDamageFlag = false;
@@ -713,11 +719,5 @@ public abstract class LivingEntityMixin {
 	private boolean spectrum$isWet(LivingEntity livingEntity) {
 		return livingEntity.isTouchingWater() ? ((TouchingWaterAware) livingEntity).spectrum$isActuallyTouchingWater() : livingEntity.isWet();
 	}
-
-
-	@com.llamalad7.mixinextras.injector.v2.WrapWithCondition(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;tiltScreen(DD)V"))
-	private boolean shouldTiltScreen(LivingEntity entity, double deltaX, double deltaZ, DamageSource source,
-			float amount) {
-		return !source.isIn(SpectrumDamageTypeTags.USES_SET_HEALTH);
-	}
+	
 }

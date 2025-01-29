@@ -4643,7 +4643,12 @@
   "book.spectrum.guidebook.intro.page2.text": "随着你对光谱世界的探索越发深入,你所达成的进度越多,解锁的新事物也就越多.\\\n随着你的进度,你原本熟知的世界会逐渐显露全新样貌,向你展现出前所未见的各色新事物——这些变化只对*你*展现.\\\n\\\n最终,你要汇集你的所学所识,完成最后的目标:深入基岩下方.",
   "book.spectrum.guidebook.intro.page3.link_text": "光谱世界的Discord",
   "book.spectrum.guidebook.intro.page3.text": "没有头绪吗?看看这本书或你的进度吧,它们会指引你前去探索.\\\n\\\n光谱世界仍在开发中,如果您发现Bug或者有什么建议,请加入光谱世界的Discord频道,或在GitHub上报告!\\\n祝你玩的开心!-DaFuqs",
-
+	"book.spectrum.guidebook.intro.stuck.title": "不知道如何推进了吗?",
+	"book.spectrum.guidebook.intro.stuck.text": "看一眼这本任务书或者你的光谱世界进度吧. 在这两个地方你都能找到下一步要做什么的提示.\\\n\\\nThere will be multiple advancement trees, one for each chapter of your journey.",
+	"book.spectrum.guidebook.intro.hints.title": "Optional Hint System",
+	"book.spectrum.guidebook.intro.hints.text": "Your Colorful World book comes with a hint system. If you ever are stuck feel free to consult these entries for a small hint - or the solution entirely.\\\n\\\nThey are purely optional - you will not lose out on anything if you use them. But of course you can pride yourself you finished the mod all by yourself!",
+ 
+	
   "book.spectrum.guidebook.inventory_insertion.page0.text": "背包里装满[#](bb00bb)泥土[#]()的时候,继续开矿的结果很可能就是继续获得[#](bb00bb)泥土[#](),而矿物径直落入[#](bb00bb)熔岩[#]()……\\\n要那么多泥土干嘛?给新人盖火柴盒?\\\n\\\n嘛,反正[#](bb00bb)熔岩[#]()的事一定要有个头!",
   "book.spectrum.guidebook.inventory_insertion.page1.text": "将挖掘的方块和生物的掉落物直接吸纳到背包中,而不是掉在地上.\\\n\\\n最大等级:1\\\n适用于采掘工具、剪刀、武器、弓、弩和 光谱世界 的钓鱼竿.",
 
